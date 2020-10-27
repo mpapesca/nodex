@@ -1,7 +1,7 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import InfoScreen from '../screens/InfoScreen';
 import HomeStack from './HomeStack';
+import InfoStack from './InfoStack';
 
 const RootDrawer = () => {
 
@@ -9,8 +9,8 @@ const RootDrawer = () => {
 
     return (
         <Drawer.Navigator>
-            <Drawer.Screen name="HomeStack" component={HomeStack} />
-            <Drawer.Screen name="Info" component={InfoScreen} />
+            <Drawer.Screen name="Home" component={HomeStack} />
+            <Drawer.Screen name="Info" component={InfoStack} />
         </Drawer.Navigator>
     );
 };
