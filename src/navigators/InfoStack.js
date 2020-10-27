@@ -8,7 +8,7 @@ const InfoStack = () => {
 
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Info" component={InfoScreen} />
+            <Stack.Screen name="Info" component={InfoScreen} options={{ headerShown: false }} />
         </Stack.Navigator>
     );
 };

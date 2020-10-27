@@ -1,14 +1,23 @@
+import { Layout, Text } from '@ui-kitten/components';
 import React from 'react';
-import {View, Text} from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
 const InfoScreen = () => {
     return (
-        <View>
-            <Text>
-                InfoScreen
-            </Text>
-        </View>
-    )
+        <Layout style={styles.container}>
+            <SafeAreaView>
+                <Text>
+                    InfoScreen
+                </Text>
+            </SafeAreaView>
+        </Layout >
+    );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+});
 
 export default InfoScreen;

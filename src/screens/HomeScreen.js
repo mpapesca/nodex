@@ -1,14 +1,24 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Layout, Text } from '@ui-kitten/components';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HomeScreen = () => {
     return (
-        <View>
-            <Text>
-                HomeScreen
+        <Layout style={styles.container}>
+            <SafeAreaView>
+                <Text>
+                    HomeScreen
             </Text>
-        </View>
+            </SafeAreaView>
+        </Layout>
     )
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+});
 
 export default HomeScreen;
