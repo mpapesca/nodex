@@ -10,9 +10,7 @@ const InfoScreen = () => {
                     alignment='center'
                     title='Info'
                 />
-                <Text>
-                    InfoScreen
-                </Text>
+
             </SafeAreaView>
         </Layout >
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Layout, Text, TopNavigation } from '@ui-kitten/components';
+import { Layout, Text, TopNavigation, Input } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HomeScreen = () => {
@@ -9,11 +9,11 @@ const HomeScreen = () => {
             <SafeAreaView>
                 <TopNavigation
                     alignment='center'
-                    title='Info'
+                    title='Home'
                 />
-                <Text>
-                    HomeScreen
-                </Text>
+                <Input
+                    placeholder='Search...'
+                />
             </SafeAreaView>
         </Layout>
     )

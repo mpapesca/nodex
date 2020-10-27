@@ -5,6 +5,7 @@ import * as eva from '@eva-design/eva';
 import { ApplicationProvider } from '@ui-kitten/components';
 import RootDrawer from './src/navigators/RootDrawer';
 import { useColorScheme } from 'react-native';
+// import { useColorScheme } from 'react-native';
 
 const App = () => {
 
