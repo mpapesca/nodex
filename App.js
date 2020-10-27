@@ -10,13 +10,12 @@ const App = () => {
 
   const colorScheme = useColorScheme();
   const theme = colorScheme == 'light' ? eva.light : eva.dark;
-  console.log({theme});
 
   return (
     <ApplicationProvider {...eva} theme={theme}>
-        <NavigationContainer>
+      <NavigationContainer>
           <RootDrawer />
-        </NavigationContainer>
+      </NavigationContainer>
     </ApplicationProvider>
   );
 };

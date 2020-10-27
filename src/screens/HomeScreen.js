@@ -1,15 +1,19 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Layout, Text } from '@ui-kitten/components';
+import { Layout, Text, TopNavigation } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HomeScreen = () => {
     return (
         <Layout style={styles.container}>
             <SafeAreaView>
+                <TopNavigation
+                    alignment='center'
+                    title='Info'
+                />
                 <Text>
                     HomeScreen
-            </Text>
+                </Text>
             </SafeAreaView>
         </Layout>
     )
