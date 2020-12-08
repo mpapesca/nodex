@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Text } from '@ui-kitten/components';
-import { Gravatar, GravatarApi } from 'react-native-gravatar';
+import { Gravatar } from 'react-native-gravatar';
 
-const ContactCard = ({ title, email, name }) => {
+const ContactCard = ({ title, email, name, link }) => {
     return (
         <View style={styles.container}>
             {title && <Text category='h4'>{title}</Text>}
@@ -26,7 +26,7 @@ const ContactCard = ({ title, email, name }) => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 8
+        margin: 8
     },
     roundedProfileImage: {
         width: 64,

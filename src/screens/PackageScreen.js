@@ -8,7 +8,7 @@ import { MarkdownView } from 'react-native-markdown-view';
 import { Gravatar, GravatarApi } from 'react-native-gravatar';
 import ContactCard from '../components/ContactCard';
 
-const PackageScreen = ({ route: { params: { nodePackage } } }) => {
+const PackageScreen = ({ route: { params: { nodePackage } }, navigation }) => {
 
     console.log({ nodePackage });
 
@@ -54,6 +54,7 @@ const PackageScreen = ({ route: { params: { nodePackage } } }) => {
                     title={nodePackage.name}
                 />
                 <ContactCard title='Publisher' email={nodePackage.publisher.email} name={nodePackage.publisher.username} />
+                <Button style={{ margin: 8 }} onPress={() => navigation.push('Maintainers', { contacts: nodePackage.maintainers })}>Maintainers</Button>
                 <View style={styles.linkButtonsContainer}>
                     {homeButton}
                     {repoButton}
