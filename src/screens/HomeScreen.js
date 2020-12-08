@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Layout, Text, TopNavigation, Input, List, ListItem, Divider } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
