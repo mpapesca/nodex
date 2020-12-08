@@ -36,6 +36,8 @@ const HomeScreen = ({ navigation }) => {
                 <Input
                     placeholder='Search....'
                     onChangeText={(val) => search(val)}
+                    autoCorrect={false}
+                    autoCapitalize='none'
                 />
                 <List
                     style={styles.container}
