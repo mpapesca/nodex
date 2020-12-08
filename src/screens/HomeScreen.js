@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { NpmApiClient } from '../apis/NpmApiClient';
 import PackageListItem from '../components/PackageListItem';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
 
     const [searchResults, setSearchResults] = useState([]);
 
@@ -18,8 +18,12 @@ const HomeScreen = () => {
 
     };
 
+    const navToPackage = (nodePackage) => {
+        navigation.push("Package", { nodePackage });
+    };
+
     const renderItem = ({ item }) => (
-        <PackageListItem nodePackage={item.package} score={item.score} searchScore={item.searchScore} />
+        <PackageListItem nodePackage={item.package} score={item.score} searchScore={item.searchScore} onPress={navToPackage} />
     );
 
     return (

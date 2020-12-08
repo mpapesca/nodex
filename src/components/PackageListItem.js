@@ -3,10 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { ListItem, Text } from '@ui-kitten/components';
 import gradient from 'gradient-color';
 
-const PackageListItem = ({ nodePackage, score, searchScore }) => {
-
-    // console.log({ nodePackage })
-    console.log({ score });
+const PackageListItem = ({ nodePackage, score, searchScore, onPress }) => {
 
     const title = evaProps => (
         <Text {...evaProps} key={nodePackage.name} style={styles.packageTitle}>
@@ -33,6 +30,7 @@ const PackageListItem = ({ nodePackage, score, searchScore }) => {
         title={evaProps => title(evaProps)}
         description={evaProps => scores(evaProps)}
         key={nodePackage.name}
+        onPress={() => onPress(nodePackage)}
     />;
 
 };
