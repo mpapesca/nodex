@@ -29,7 +29,8 @@
     "react-native-screens": "~2.10.1",
     "react-native-svg": "^12.1.0",
     "react-native-ui-kitten": "^4.4.1",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "~0.13.12",
+    "expo-web-browser": "~8.5.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

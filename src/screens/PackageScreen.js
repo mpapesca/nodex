@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Layout, Text, TopNavigation, Icon, Button } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import * as WebBrowser from 'expo-web-browser';
 
 const PackageScreen = ({ route: { params: { nodePackage } } }) => {
 
@@ -10,34 +11,37 @@ const PackageScreen = ({ route: { params: { nodePackage } } }) => {
 
     let { bugs, homepage, repository, npm } = nodePackage.links;
 
+    const openLink = async (link) => {
+        await WebBrowser.openBrowserAsync(link);
+    };
 
-    const repoButton = repository ? <Button style={styles.button} >
-        <FontAwesome5 name='github' size={24} />
+    const repoButton = repository ? <Button style={styles.button} onPress={() => openLink(repository)}>
+        <FontAwesome5
+            name={repository.includes('github') ? 'github' : repository.includes('gitlab') ? 'gitlab' : 'code'}
+            size={24}
+        />
     </Button> : null;
 
-    const npmButton = npm ? <Button style={styles.button} >
-        <FontAwesome5 name='npm' size={24} />
+    const npmButton = npm ? <Button style={styles.button} onPress={() => openLink(npm)}>
+        <FontAwesome5
+            name='npm'
+            size={24}
+        />
     </Button> : null;
 
-    const bugsButton = bugs ? <Button style={styles.button} >
-        <FontAwesome5 name='bug' size={24} />
+    const bugsButton = bugs ? <Button style={styles.button} onPress={() => openLink(bugs)}>
+        <FontAwesome5
+            name='bug'
+            size={24}
+        />
     </Button> : null;
 
-    const homeButton = homepage ? <Button style={styles.button} >
-        <FontAwesome5 name='home' size={24} />
+    const homeButton = homepage ? <Button style={styles.button} onPress={() => openLink(homepage)}>
+        <FontAwesome5
+            name='home'
+            size={24}
+        />
     </Button> : null;
-
-    // const HomeIcon = (props) => (
-    //     <FontAwesome5 name='home' {...props} size={24} />
-    // );
-
-    // const BugIcon = (props) => (
-    //     <FontAwesome5 name='bug' {...props} size={24} />
-    // );
-
-    // const NpmIcon = (props) => (
-    //     <FontAwesome5 name='npm' {...props} size={24} />
-    // );
 
     return (
         <Layout style={styles.container}>
@@ -47,19 +51,10 @@ const PackageScreen = ({ route: { params: { nodePackage } } }) => {
                     title={nodePackage.name}
                 />
                 <View style={styles.linkButtonsContainer}>
+                    {homeButton}
                     {repoButton}
                     {npmButton}
                     {bugsButton}
-                    {homeButton}
-                    {/* <Button style={styles.button} >
-                        <HomeIcon />
-                    </Button>
-                    <Button style={styles.button} >
-                        <BugIcon />
-                    </Button>
-                    <Button style={styles.button} >
-                        <NpmIcon />
-                    </Button> */}
                 </View>
             </SafeAreaView>
         </Layout>
