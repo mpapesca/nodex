@@ -4,6 +4,9 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Layout, Text, TopNavigation, Icon, Button } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as WebBrowser from 'expo-web-browser';
+import { MarkdownView } from 'react-native-markdown-view';
+import { Gravatar, GravatarApi } from 'react-native-gravatar';
+import ContactCard from '../components/ContactCard';
 
 const PackageScreen = ({ route: { params: { nodePackage } } }) => {
 
@@ -50,6 +53,7 @@ const PackageScreen = ({ route: { params: { nodePackage } } }) => {
                     alignment='center'
                     title={nodePackage.name}
                 />
+                <ContactCard title='Publisher' email={nodePackage.publisher.email} name={nodePackage.publisher.username} />
                 <View style={styles.linkButtonsContainer}>
                     {homeButton}
                     {repoButton}
@@ -78,14 +82,20 @@ const styles = StyleSheet.create({
         margin: 8
     },
     linkButtonsContainer: {
-        flex: 1,
         flexDirection: 'row'
     },
     linkButtonContainer: {
         flex: 1,
         alignContent: 'center',
-        marginHorizontal: 8,
-        // marginVertical: 8
+        marginHorizontal: 8
+    },
+    roundedProfileImage: {
+        width: 64,
+        height: 64,
+        borderWidth: 2,
+        borderColor: 'white',
+        borderRadius: 32,
+        margin: 16
     }
 });
 
