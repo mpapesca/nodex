@@ -23,8 +23,12 @@ const HomeScreen = ({ navigation }) => {
 
     };
 
-    const navToPackage = (nodePackage) => {
-        navigation.push("Package", { nodePackage });
+    const navToPackage = async (nodePackage) => {
+        const apiClient = new NpmApiClient();
+        console.log({ name: nodePackage.name });
+        const fullPackage = await apiClient.getPackage(nodePackage.name);
+        console.log({ fullPackage });
+        navigation.push("Package", { nodePackage, fullPackage });
     };
 
     const renderItem = ({ item }) => (

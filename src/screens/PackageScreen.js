@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, useColorScheme, ScrollView } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Layout, Text, TopNavigation, Icon, Button } from '@ui-kitten/components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as WebBrowser from 'expo-web-browser';
-import { MarkdownView } from 'react-native-markdown-view';
-import { Gravatar, GravatarApi } from 'react-native-gravatar';
+import Markdown from 'react-native-markdown-package';
 import ContactCard from '../components/ContactCard';
 
-const PackageScreen = ({ route: { params: { nodePackage } }, navigation }) => {
 
-    console.log({ nodePackage });
+const PackageScreen = ({ route: { params: { nodePackage, fullPackage } }, navigation }) => {
+
+    // console.log({ nodePackage });
+
+    const colorScheme = useColorScheme();
+    const [isDarkMode, setIsDarkMode] = useState(colorScheme == 'dark');
+
+    useEffect(() => {
+        setIsDarkMode(colorScheme == 'dark');
+    }, [colorScheme]);
 
     let { bugs, homepage, repository, npm } = nodePackage.links;
 
@@ -46,6 +53,8 @@ const PackageScreen = ({ route: { params: { nodePackage } }, navigation }) => {
         />
     </Button> : null;
 
+    const readme = fullPackage.readme ?? nodePackage.readme;
+
     return (
         <Layout style={styles.container}>
             <SafeAreaView style={styles.container}>
@@ -53,6 +62,7 @@ const PackageScreen = ({ route: { params: { nodePackage } }, navigation }) => {
                     alignment='center'
                     title={nodePackage.name}
                 />
+                <ScrollView>
                 <ContactCard title='Publisher' email={nodePackage.publisher.email} name={nodePackage.publisher.username} />
                 <Button style={{ margin: 8 }} onPress={() => navigation.push('Maintainers', { contacts: nodePackage.maintainers })}>Maintainers</Button>
                 <View style={styles.linkButtonsContainer}>
@@ -61,6 +71,12 @@ const PackageScreen = ({ route: { params: { nodePackage } }, navigation }) => {
                     {npmButton}
                     {bugsButton}
                 </View>
+                    <View style={styles.readmeContainer}>
+                        <Markdown onLink={(url) => Linking.openURL(url)} >
+                            {readme}
+                        </Markdown>
+                    </View>
+                </ScrollView>
             </SafeAreaView>
         </Layout>
     );
@@ -90,14 +106,74 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         marginHorizontal: 8
     },
-    roundedProfileImage: {
+    profileImage: {
         width: 64,
         height: 64,
         borderWidth: 2,
         borderColor: 'white',
         borderRadius: 32,
         margin: 16
+    },
+    profileImageLight: {
+        borderColor: 'black'
+    },
+    readmeContainer: {
+        // flex: 1
+        backgroundColor: 'white',
+        margin: 8,
+        padding: 4
     }
 });
+
+const markdownStyle = {
+    singleLineMd: {
+        text: {
+            color: 'blue',
+            textAlign: "right"
+        },
+        view: {
+            alignSelf: 'stretch',
+        }
+    },
+    collectiveMd: {
+        heading1: {
+            color: 'white'
+        },
+        heading2: {
+            color: 'white',
+            textAlign: "left"
+        },
+        strong: {
+            // color: 'blue'
+            fontWeight: 'bold'
+        },
+        em: {
+            color: 'cyan'
+        },
+        text: {
+            color: 'white',
+        },
+        blockQuoteText: {
+            color: 'grey'
+        },
+        blockQuoteSection: {
+            flexDirection: 'row',
+        },
+        blockQuoteSectionBar: {
+            width: 3,
+            height: null,
+            backgroundColor: '#DDDDDD',
+            marginRight: 15,
+        },
+        codeBlock: {
+            fontFamily: 'Courier',
+            fontWeight: '500',
+            backgroundColor: '#DDDDDD',
+        },
+        tableHeader: {
+            backgroundColor: 'grey',
+        },
+    }
+};
 
 export default PackageScreen;

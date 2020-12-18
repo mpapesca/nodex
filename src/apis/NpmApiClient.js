@@ -21,7 +21,20 @@ export const NpmApiClient = () => {
 
     };
 
+    const getPackage = async (packageName) => {
+        try {
+            const response = await client.get(`/${packageName}`);
+            console.log({ response: response.data });
+
+            return response.data;
+        } catch (err) {
+            console.error('Error occured getting package', err);
+        }
+
+    };
+
     return {
-        search
+        search,
+        getPackage
     };
 };
